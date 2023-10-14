@@ -53,7 +53,7 @@ class CategoryTypeController extends Controller
                 'create' => Auth::user()->can('category.type create'),
                 'edit' => Auth::user()->can('category.type edit'),
                 'delete' => Auth::user()->can('category.type delete'),
-                'manage' => Auth::user()->can('category.type index'),
+                'manage' => Auth::user()->can('category.type list'),
             ]
         ]);
     }

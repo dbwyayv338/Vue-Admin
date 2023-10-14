@@ -15,14 +15,14 @@ import BaseButton from "@/Components/BaseButton.vue"
 import CardBox from "@/Components/CardBox.vue"
 import BaseButtons from "@/Components/BaseButtons.vue"
 import NotificationBar from "@/Components/NotificationBar.vue"
-import MenuItemList from "@/Components/Admin/MenuItemList.vue"
+import CategoryItemList from "@/Components/Admin/CategoryItemList.vue";
 
 const props = defineProps({
   items: {
     type: Object,
     default: () => ({}),
   },
-  menu: {
+  category: {
     type: Object,
     default: () => ({}),
   },
@@ -36,7 +36,7 @@ const formDelete = useForm({})
 
 function destroy(id) {
   if (confirm("Are you sure you want to delete?")) {
-    formDelete.delete(route("menu.item.destroy", {menu: props.menu.id, item: id}))
+    formDelete.delete(route("category.item.destroy", {category: props.category.id, item: id}))
   }
 }
 
@@ -44,16 +44,16 @@ function destroy(id) {
 
 <template>
   <LayoutAuthenticated>
-    <Head title="Menu Items" />
+    <Head title="Category Items" />
     <SectionMain>
       <SectionTitleLineWithButton
         :icon="mdiLink"
-        title="Menu Items"
+        title="Category Items"
         main
       >
         <BaseButtons type="justify-start lg:justify-end" no-wrap>
           <BaseButton
-            :route-name="route('menu.index')"
+            :route-name="route('categories.index')"
             :icon="mdiArrowLeftBoldOutline"
             label="Back"
             color="white"
@@ -62,7 +62,7 @@ function destroy(id) {
           />
           <BaseButton
             v-if="can.delete"
-            :route-name="route('menu.item.create', menu.id)"
+            :route-name="route('category.item.create', category.id)"
             :icon="mdiPlus"
             label="Add"
             color="info"
@@ -96,7 +96,7 @@ function destroy(id) {
                       Name
                   </td>
                   <td data-label="Name">
-                      {{ menu.name }}
+                      {{ category.name }}
                   </td>
               </tr>
               <tr>
@@ -113,7 +113,7 @@ function destroy(id) {
                       Machine name
                   </td>
                   <td data-label="Machine Name">
-                      {{ menu.machine_name }}
+                      {{ category.machine_name }}
                   </td>
               </tr>
               </tbody>
@@ -127,7 +127,7 @@ function destroy(id) {
                 Name
               </th>
               <th>
-                Link
+                Slug
               </th>
               <th>
                 Enable
@@ -138,7 +138,7 @@ function destroy(id) {
 
           <tbody>
             <template v-for="item in items">
-              <MenuItemList :item="item" :menu="menu" :can="can" :level=0 />
+              <CategoryItemList :item="item" :category="category" :can="can" :level=0 />
             </template>
           </tbody>
         </table>

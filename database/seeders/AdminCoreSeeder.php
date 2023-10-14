@@ -43,14 +43,14 @@ class AdminCoreSeeder extends Seeder
             'menu.item create',
             'menu.item edit',
             'menu.item delete',
-            'category list',
-            'category create',
-            'category edit',
-            'category delete',
             'category.type list',
             'category.type create',
             'category.type edit',
             'category.type delete',
+            'category.item list',
+            'category.item create',
+            'category.item edit',
+            'category.item delete',
         ];
 
         foreach ($permissions as $permission) {
@@ -64,6 +64,8 @@ class AdminCoreSeeder extends Seeder
         $role1->givePermissionTo('user list');
         $role1->givePermissionTo('menu list');
         $role1->givePermissionTo('menu.item list');
+        $role1->givePermissionTo('category.type list');
+        $role1->givePermissionTo('category.item list');
 
         $role2 = Role::create(['name' => 'admin']);
         foreach ($permissions as $permission) {

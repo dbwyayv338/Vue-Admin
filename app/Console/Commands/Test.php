@@ -2,16 +2,7 @@
 
 namespace App\Console\Commands;
 
-use Finance\Models\FinApproval;
-use Finance\Models\FinOrder;
-use Data\Models\Customer;
-use Finance\Models\FinOrderVoucher;
 use Illuminate\Console\Command;
-use Mall\Models\ActBargain;
-use Mall\Models\RentOrder;
-use Supply\Models\SupplyInstallmentOrder;
-use Illuminate\Support\Facades\DB;
-use Supply\Models\SupplyTask;
 
 class Test extends Command
 {
@@ -36,7 +27,7 @@ class Test extends Command
      */
     public function handle()
     {
-
+//        dd(MenuItem::selectOptions(1));
     }
 
 }
