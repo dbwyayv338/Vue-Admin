@@ -47,10 +47,6 @@ const menuNavBarToggle = () => {
   isMenuNavBarActive.value = !isMenuNavBarActive.value
 }
 
-const menuOpenLg = () => {
-  layoutStore.isAsideLgActive = true
-}
-
 const logout = () => {
   router.post(route('logout'))
 }
@@ -71,15 +67,6 @@ const logout = () => {
         >
           <BaseIcon
             :path="layoutStore.isAsideMobileExpanded ? mdiBackburger : mdiForwardburger"
-            size="24"
-          />
-        </NavBarItem>
-        <NavBarItem
-          type="hidden lg:flex xl:hidden"
-          @click.prevent="menuOpenLg"
-        >
-          <BaseIcon
-            :path="mdiMenu"
             size="24"
           />
         </NavBarItem>

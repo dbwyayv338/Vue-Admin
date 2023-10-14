@@ -32,8 +32,8 @@ const props = defineProps({
         <td data-label="Name">
             <div :style="{ 'margin-left': level*20 + 'px' }">{{ item.name }}</div>
         </td>
-        <td data-label="Description">
-            {{ item.description }}
+        <td data-label="Link">
+            {{ item.link }}
         </td>
         <td data-label="Enabled">
             {{ item.enabled }}

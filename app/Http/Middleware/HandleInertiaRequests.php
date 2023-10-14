@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
-use BalajiDharma\LaravelMenu\Models\Menu;
+use App\Http\Models\Menu;
 
 class HandleInertiaRequests extends Middleware
 {

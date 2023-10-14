@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
 use App\Models\Role;
-use BalajiDharma\LaravelAdminCore\Requests\StoreRoleRequest;
-use BalajiDharma\LaravelAdminCore\Requests\UpdateRoleRequest;
+use App\Http\Requests\StoreRoleRequest;
+use App\Http\Requests\UpdateRoleRequest;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 

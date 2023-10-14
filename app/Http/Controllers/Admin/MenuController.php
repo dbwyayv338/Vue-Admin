@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use BalajiDharma\LaravelMenu\Models\Menu;
-use BalajiDharma\LaravelAdminCore\Requests\StoreMenuRequest;
-use BalajiDharma\LaravelAdminCore\Requests\UpdateMenuRequest;
+use App\Http\Models\Menu;
+use App\Http\Requests\StoreMenuRequest;
+use App\Http\Requests\UpdateMenuRequest;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
@@ -89,7 +89,7 @@ class MenuController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \BalajiDharma\LaravelMenu\Models\Menu  $menu
+     * @param  \App\Http\Models\Menu  $menu
      * @return \Inertia\Response
      */
     public function edit(Menu $menu)
@@ -103,7 +103,7 @@ class MenuController extends Controller
      * Update the specified resource in storage.
      *
      * @param  UpdateMenuRequest  $request
-     * @param  \BalajiDharma\LaravelMenu\Models\Menu  $menu
+     * @param  \App\Http\Models\Menu  $menu
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateMenuRequest $request, Menu $menu)
@@ -117,7 +117,7 @@ class MenuController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \BalajiDharma\LaravelMenu\Models\Menu  $menu
+     * @param  \App\Http\Models\Menu  $menu
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Menu $menu)

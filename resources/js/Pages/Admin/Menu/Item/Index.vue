@@ -125,7 +125,7 @@ function destroy(id) {
                 Name
               </th>
               <th>
-                Description
+                Link
               </th>
               <th>
                 Enable

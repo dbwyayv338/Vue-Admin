@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Permission;
-use BalajiDharma\LaravelAdminCore\Requests\StorePermissionRequest;
-use BalajiDharma\LaravelAdminCore\Requests\UpdatePermissionRequest;
+use App\Http\Requests\StorePermissionRequest;
+use App\Http\Requests\UpdatePermissionRequest;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 

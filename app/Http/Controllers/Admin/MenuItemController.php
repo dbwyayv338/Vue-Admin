@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use BalajiDharma\LaravelAdminCore\Requests\StoreMenuItemRequest;
-use BalajiDharma\LaravelAdminCore\Requests\UpdateMenuItemRequest;
-use BalajiDharma\LaravelMenu\Models\Menu;
-use BalajiDharma\LaravelMenu\Models\MenuItem;
+use App\Http\Requests\StoreMenuItemRequest;
+use App\Http\Requests\UpdateMenuItemRequest;
+use App\Http\Models\Menu;
+use App\Http\Models\MenuItem;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
@@ -58,7 +58,7 @@ class MenuItemController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  StoreMenuItemRequest  $request
-     * @param  \BalajiDharma\LaravelMenu\Models\Menu $menu
+     * @param  \App\Http\Models\Menu $menu
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreMenuItemRequest $request, Menu $menu)
@@ -72,7 +72,7 @@ class MenuItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \BalajiDharma\LaravelMenu\Models\Menu $menu
+     * @param  \App\Http\Models\Menu $menu
      * @return \Inertia\Response
      */
     public function edit(Menu $menu, MenuItem $item)
@@ -89,8 +89,8 @@ class MenuItemController extends Controller
      * Update the specified resource in storage.
      *
      * @param  UpdateMenuItemRequest  $request
-     * @param  \BalajiDharma\LaravelMenu\Models\Menu $menu
-     * @param  \BalajiDharma\LaravelMenu\Models\MenuItem $item
+     * @param  \App\Http\Models\Menu $menu
+     * @param  \App\Http\Models\MenuItem $item
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateMenuItemRequest $request, Menu $menu, MenuItem $item)
@@ -104,8 +104,8 @@ class MenuItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \BalajiDharma\LaravelMenu\Models\Menu $menu
-     * @param  \BalajiDharma\LaravelMenu\Models\MenuItem $menuItem
+     * @param  \App\Http\Models\Menu $menu
+     * @param  \App\Http\Models\MenuItem $menuItem
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Menu $menu, MenuItem $item)
