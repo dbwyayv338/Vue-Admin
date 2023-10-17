@@ -81,7 +81,7 @@ class CategoryItemController extends Controller
     {
         $item_options = CategoryItem::selectOptions($category->id, $item->parent_id ?? $item->id);
         return Inertia::render('Admin/CategoryItem/Edit', [
-            'menu' => $category,
+            'category' => $category,
             'item' => $item,
             'item_options' => $item_options
         ]);

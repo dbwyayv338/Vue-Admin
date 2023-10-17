@@ -53,7 +53,7 @@ function destroy(id) {
       >
         <BaseButtons type="justify-start lg:justify-end" no-wrap>
           <BaseButton
-            :route-name="route('categories.index')"
+            :route-name="route('category.index')"
             :icon="mdiArrowLeftBoldOutline"
             label="Back"
             color="white"
@@ -79,14 +79,12 @@ function destroy(id) {
       >
         {{ $page.props.flash.message }}
       </NotificationBar>
-      <CardBox class="mb-5 p-5" has-table>
+      <CardBox class="mb-5" has-table>
           <table class="border-collapse w-full border border-slate-400 dark:border-slate-500 bg-white text-sm shadow-sm">
               <tbody>
               <tr>
                   <td
                       class="
-                  p-4
-                  pl-8
                   text-slate-500
                   dark:text-slate-400
                   hidden
@@ -95,15 +93,15 @@ function destroy(id) {
                   >
                       Name
                   </td>
-                  <td data-label="Name">
+                  <td
+                      class="w-2/3"
+                      data-label="Name">
                       {{ category.name }}
                   </td>
               </tr>
               <tr>
                   <td
                       class="
-                  p-4
-                  pl-8
                   text-slate-500
                   dark:text-slate-400
                   hidden
@@ -112,7 +110,9 @@ function destroy(id) {
                   >
                       Machine name
                   </td>
-                  <td data-label="Machine Name">
+                  <td
+                      class="w-2/3"
+                      data-label="Machine Name">
                       {{ category.machine_name }}
                   </td>
               </tr>
@@ -138,7 +138,7 @@ function destroy(id) {
 
           <tbody>
             <template v-for="item in items">
-              <CategoryItemList :item="item" :category="category" :can="can" :level=0 />
+              <CategoryItemList :item="item" :category="category" :can="can" :level=0 @delete="destroy" />
             </template>
           </tbody>
         </table>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Http\Models\MenuItem;
 use Illuminate\Database\Seeder;
 use App\Http\Models\CategoryType;
 use App\Http\Models\Menu;
@@ -57,30 +58,23 @@ class AdminCoreSeeder extends Seeder
             Permission::create(['name' => $permission]);
         }
 
-        // create roles and assign existing permissions
-        $role1 = Role::create(['name' => 'writer']);
-        $role1->givePermissionTo('permission list');
-        $role1->givePermissionTo('role list');
-        $role1->givePermissionTo('user list');
-        $role1->givePermissionTo('menu list');
-        $role1->givePermissionTo('menu.item list');
-        $role1->givePermissionTo('category.type list');
-        $role1->givePermissionTo('category.item list');
+        $role1 = Role::create(['name' => 'super-admin']);
+        // gets all permissions via Gate::before rule; see AuthServiceProvider
 
         $role2 = Role::create(['name' => 'admin']);
         foreach ($permissions as $permission) {
             $role2->givePermissionTo($permission);
         }
 
-        $role3 = Role::create(['name' => 'super-admin']);
-        // gets all permissions via Gate::before rule; see AuthServiceProvider
+        // create roles and assign existing permissions
+        $role3 = Role::create(['name' => 'user']);
 
         // create demo users
         $user = \App\Models\User::factory()->create([
             'name' => 'Super Admin',
             'email' => 'superadmin@example.com',
         ]);
-        $user->assignRole($role3);
+        $user->assignRole($role1);
 
         $user = \App\Models\User::factory()->create([
             'name' => 'Admin User',
@@ -90,9 +84,9 @@ class AdminCoreSeeder extends Seeder
 
         $user = \App\Models\User::factory()->create([
             'name' => 'Example User',
-            'email' => 'test@example.com',
+            'email' => 'user@example.com',
         ]);
-        $user->assignRole($role1);
+        $user->assignRole($role3);
 
         // create menu
         $menu = Menu::create([
@@ -101,61 +95,66 @@ class AdminCoreSeeder extends Seeder
             'description' => 'Admin Menu',
         ]);
 
-        $menu->menuItems()->create([
-            'name'      => 'Dashboard',
-            'uri'       => '/<admin>/dashboard',
-            'enabled'   => 1,
-            'parent_id'    => 0,
-            'weight'    => 0,
+        $item = $menu->menuItems()->create([
+            'name' => 'Dashboard',
+            'uri' => '/<admin>/dashboard',
+            'enabled' => 1,
+            'parent_id' => 0,
+            'weight' => 0,
         ]);
+        $item->assignRole([$role2->id, $role3->id]);
 
         $system_menu = $menu->menuItems()->create([
-            'name'      => 'System',
-            'uri'       => '<nolink>',
-            'enabled'   => 1,
-            'parent_id'    => 0,
-            'weight'    => 0,
+            'name' => 'System',
+            'uri' => '<nolink>',
+            'enabled' => 1,
+            'parent_id' => 0,
+            'weight' => 0,
         ]);
+        $system_menu->assignRole($role2);
 
         $menu_system_items = [
             [
-                'name'      => 'Permissions',
-                'uri'       => '/<admin>/permission',
-                'enabled'   => 1,
-                'parent_id'    => $system_menu->id,
-                'weight'    => 1,
+                'name' => 'Users',
+                'uri' => '/<admin>/user',
+                'enabled' => 1,
+                'parent_id' => $system_menu->id,
+                'weight' => 1,
             ],
             [
-                'name'      => 'Roles',
-                'uri'       => '/<admin>/role',
-                'enabled'   => 1,
-                'parent_id'    => $system_menu->id,
-                'weight'    => 2,
+                'name' => 'Roles',
+                'uri' => '/<admin>/role',
+                'enabled' => 1,
+                'parent_id' => $system_menu->id,
+                'weight' => 2,
             ],
             [
-                'name'      => 'Users',
-                'uri'       => '/<admin>/user',
-                'enabled'   => 1,
-                'parent_id'    => $system_menu->id,
-                'weight'    => 3,
+                'name' => 'Menus',
+                'uri' => '/<admin>/menu',
+                'enabled' => 1,
+                'parent_id' => $system_menu->id,
+                'weight' => 3,
             ],
             [
-                'name'      => 'Menus',
-                'uri'       => '/<admin>/menu',
-                'enabled'   => 1,
-                'parent_id'    => $system_menu->id,
-                'weight'    => 4,
+                'name' => 'Categories',
+                'uri' => '/<admin>/category',
+                'enabled' => 1,
+                'parent_id' => $system_menu->id,
+                'weight' => 4,
             ],
             [
-                'name'      => 'Categories',
-                'uri'       => '/<admin>/categories',
-                'enabled'   => 1,
-                'parent_id'    => $system_menu->id,
-                'weight'    => 4,
-            ]
+                'name' => 'Permissions',
+                'uri' => '/<admin>/permission',
+                'enabled' => 1,
+                'parent_id' => $system_menu->id,
+                'weight' => 5,
+            ],
         ];
 
         $menu->menuItems()->createMany($menu_system_items);
+        MenuItem::query()->where('parent_id', $system_menu->id)->get()->map(function (MenuItem $item) use ($role2) {
+            $item->assignRole($role2);
+        });
 
         // create category type
         CategoryType::create([

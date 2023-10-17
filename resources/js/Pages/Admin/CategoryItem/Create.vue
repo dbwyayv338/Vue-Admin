@@ -15,7 +15,7 @@ import BaseButton from '@/Components/BaseButton.vue'
 import BaseButtons from '@/Components/BaseButtons.vue'
 
 const props = defineProps({
-  menu: {
+  category: {
     type: Object,
     default: () => ({}),
   },
@@ -27,7 +27,7 @@ const props = defineProps({
 
 const form = useForm({
   name: '',
-  uri: '',
+  slug: '',
   description: '',
   enabled: true,
   parent_id: '',
@@ -38,15 +38,15 @@ const form = useForm({
 
 <template>
   <LayoutAuthenticated>
-    <Head title="Create menu item" />
+    <Head title="Create category item" />
     <SectionMain>
       <SectionTitleLineWithButton
         :icon="mdiMenu"
-        title="Add menu item"
+        title="Add category item"
         main
       >
         <BaseButton
-          :route-name="route('menu.item.index', menu.id)"
+          :route-name="route('category.item.index', category.id)"
           :icon="mdiArrowLeftBoldOutline"
           label="Back"
           color="white"
@@ -56,7 +56,7 @@ const form = useForm({
       </SectionTitleLineWithButton>
       <CardBox
         form
-        @submit.prevent="form.post(route('menu.item.store', menu.id))"
+        @submit.prevent="form.post(route('category.item.store', category.id))"
       >
         <FormField
           label="Name"
@@ -74,21 +74,17 @@ const form = useForm({
           </FormControl>
         </FormField>
         <FormField
-          label="Link"
+          label="Slug"
           :class="{ 'text-red-400': form.errors.uri }"
         >
           <FormControl
-            v-model="form.uri"
+            v-model="form.slug"
             type="text"
-            placeholder="Enter Link"
-            :error="form.errors.name"
+            placeholder="Enter slug"
+            :error="form.errors.slug"
           >
-            <div class="item-list">
-                You can also enter an internal path such as <em class="placeholder">/home</em> or an external URL such as <em class="placeholder">http://example.com</em>. 
-                Add prefix <em class="placeholder">&lt;admin&gt;</em> to link for admin page. Enter <em class="placeholder">&lt;nolink&gt;</em> to display link text only.
-            </div>
-            <div class="text-red-400 text-sm" v-if="form.errors.uri">
-              {{ form.errors.uri }}
+            <div class="text-red-400 text-sm" v-if="form.errors.slug">
+              {{ form.errors.slug }}
             </div>
           </FormControl>
         </FormField>

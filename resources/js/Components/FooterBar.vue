@@ -12,14 +12,9 @@ const year = computed(() => new Date().getFullYear())
     <BaseLevel :class="containerMaxW">
       <div class="text-center md:text-left">
         <b>&copy;{{ year }}, <a
-          href="https://justboil.me/"
+          href="https://aladdin.me/"
           target="_blank"
-        >JustBoil.me</a>.</b>
-        Get more with <a
-          href="https://tailwind-vue.justboil.me/"
-          target="_blank"
-          class="text-blue-600"
-        >Premium version</a>
+        >Aladdin.me</a>.</b>
       </div>
       <div class="md:py-2">
         <a href="https://justboil.me">

@@ -3,7 +3,9 @@
 namespace App\Http\Traits;
 
 use App\Http\Exceptions\InvalidParent;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 
 trait MenuTree
@@ -221,6 +223,16 @@ trait MenuTree
             $self = call_user_func($this->queryCallback, $self);
         }
 
+        /** @var User $user */
+        $user = auth('web')->user();
+        if(!blank($user)) {
+            if(!$user->hasRole(env('APP_SUPER_ADMIN', 'super-admin'))) {
+                $roles = $user->roles()->get()->pluck('id');
+                $self = $self->role($roles);
+            }
+        } else {
+            $self = $self->where('id', '<', 0);
+        }
 
         if($ignoreItemId) {
             return $self->where($this->getMenuRelationColumn(), $menuId)

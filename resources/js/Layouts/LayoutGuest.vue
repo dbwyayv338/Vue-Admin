@@ -1,4 +1,4 @@
-<script setup>
+w<script setup>
 import { useStyleStore } from '@/Stores/style.js'
 
 const styleStore = useStyleStore()

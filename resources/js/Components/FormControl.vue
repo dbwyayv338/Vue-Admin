@@ -53,7 +53,9 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue', 'setRef'])
 
 const computedValue = computed({
-  get: () => props.modelValue,
+  get: () => {
+    return props.modelValue ?? ''
+  },
   set: value => {
     emit('update:modelValue', value)
   }

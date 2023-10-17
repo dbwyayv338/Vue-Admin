@@ -5,12 +5,16 @@ namespace App\Http\Models;
 use App\Http\Traits\MenuTree;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Permission\Traits\HasRoles;
 
 class MenuItem extends Model
 {
     use MenuTree {
         MenuTree::boot as treeBoot;
     }
+
+    use HasRoles;
+    protected $guard_name = 'web';
 
      /**
      * The attributes that aren't mass assignable.

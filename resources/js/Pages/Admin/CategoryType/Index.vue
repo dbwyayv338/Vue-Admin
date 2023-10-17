@@ -41,7 +41,7 @@ const formDelete = useForm({})
 
 function destroy(id) {
     if (confirm("Are you sure you want to delete?")) {
-        formDelete.delete(route("categories.destroy", id))
+        formDelete.delete(route("category.destroy", id))
     }
 }
 </script>
@@ -57,7 +57,7 @@ function destroy(id) {
             >
                 <BaseButton
                     v-if="can.delete"
-                    :route-name="route('categories.create')"
+                    :route-name="route('category.create')"
                     :icon="mdiPlus"
                     label="Add"
                     color="info"
@@ -74,7 +74,7 @@ function destroy(id) {
                 {{ $page.props.flash.message }}
             </NotificationBar>
             <CardBox class="mb-6" has-table>
-                <form @submit.prevent="form.get(route('categories.index'))">
+                <form @submit.prevent="form.get(route('category.index'))">
                     <div class="py-2 flex">
                         <div class="flex pl-4">
                             <input
@@ -143,7 +143,7 @@ function destroy(id) {
                                 />
                                 <BaseButton
                                     v-if="can.edit"
-                                    :route-name="route('categories.edit', category.id)"
+                                    :route-name="route('category.edit', category.id)"
                                     color="info"
                                     :icon="mdiSquareEditOutline"
                                     small

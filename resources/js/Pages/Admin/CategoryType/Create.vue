@@ -23,15 +23,15 @@ const form = useForm({
 
 <template>
   <LayoutAuthenticated>
-    <Head title="Create menu" />
+    <Head title="Create Category Type" />
     <SectionMain>
       <SectionTitleLineWithButton
         :icon="mdiMenu"
-        title="Add menu"
+        title="Add Type"
         main
       >
         <BaseButton
-          :route-name="route('menu.index')"
+          :route-name="route('category.index')"
           :icon="mdiArrowLeftBoldOutline"
           label="Back"
           color="white"
@@ -41,7 +41,7 @@ const form = useForm({
       </SectionTitleLineWithButton>
       <CardBox
         form
-        @submit.prevent="form.post(route('menu.store'))"
+        @submit.prevent="form.post(route('category.store'))"
       >
         <FormField
           label="Name"

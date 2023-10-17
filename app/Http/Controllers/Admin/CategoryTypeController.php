@@ -44,7 +44,7 @@ class CategoryTypeController extends Controller
             $category_types->latest();
         }
 
-        $category_types = $category_types->paginate(5)->onEachSide(2)->appends(request()->query());
+        $category_types = $category_types->paginate(100)->appends(request()->query());
 
         return Inertia::render('Admin/CategoryType/Index', [
             'category_types' => $category_types,
@@ -82,20 +82,20 @@ class CategoryTypeController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->route('category.type.index')
+        return redirect()->route('category.index')
                         ->with('message', 'CategoryType created successfully.');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Http\Models\CategoryType  $menu
+     * @param  \App\Http\Models\CategoryType  $category
      * @return \Inertia\Response
      */
-    public function edit(CategoryType $menu)
+    public function edit(CategoryType $category)
     {
         return Inertia::render('Admin/CategoryType/Edit', [
-            'category.type' => $menu,
+            'category' => $category,
         ]);
     }
 
@@ -103,28 +103,28 @@ class CategoryTypeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  UpdateCategoryTypeRequest  $request
-     * @param  \App\Http\Models\CategoryType  $menu
+     * @param  \App\Http\Models\CategoryType  $category
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateCategoryTypeRequest $request, CategoryType $menu)
+    public function update(UpdateCategoryTypeRequest $request, CategoryType $category)
     {
-        $menu->update($request->all());
+        $category->update($request->all());
 
-        return redirect()->route('category.type.index')
+        return redirect()->route('category.index')
                         ->with('message', 'CategoryType updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Http\Models\CategoryType  $menu
+     * @param  \App\Http\Models\CategoryType  $category
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(CategoryType $menu)
+    public function destroy(CategoryType $category)
     {
-        $menu->delete();
+        $category->delete();
 
-        return redirect()->route('category.type.index')
+        return redirect()->route('category.index')
                         ->with('message', __('CategoryType deleted successfully'));
     }
 }

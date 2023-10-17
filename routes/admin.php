@@ -5,7 +5,7 @@ use Inertia\Inertia;
 Route::group([
     'namespace' => 'App\Http\Controllers\Admin',
     'prefix' => config('admin.prefix'),
-    'middleware' => ['auth'],
+    'middleware' => ['auth','web'],
 ], function () {
 
     Route::get('dashboard', function () {
@@ -18,7 +18,7 @@ Route::group([
     Route::resource('menu', 'MenuController')->except(['show']);
     Route::resource('menu.item', 'MenuItemController');
 
-    Route::resource('categories', 'CategoryTypeController')->except(['show']);
+    Route::resource('category', 'CategoryTypeController')->except(['show']);
     Route::resource('category.item', 'CategoryItemController');
 
     Route::get('edit-account-info', 'UserController@accountInfo')->name('admin.account.info');

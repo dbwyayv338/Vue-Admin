@@ -1,6 +1,6 @@
 <script setup>
 import { router } from '@inertiajs/vue3'
-import { mdiLogout, mdiClose } from '@mdi/js'
+import { mdiLogout, mdiClose, mdiContactlessPayment } from '@mdi/js'
 import { computed } from 'vue'
 import { useLayoutStore } from '@/Stores/layout.js'
 import { useStyleStore } from '@/Stores/style.js'
@@ -50,8 +50,15 @@ const menuClick = (event, item) => {
         :class="styleStore.asideBrandStyle"
         class="flex flex-row h-14 items-center justify-between dark:bg-slate-900"
       >
-        <div class="text-center flex-1 lg:text-left lg:pl-6 xl:text-center xl:pl-0">
-          <b class="font-black">One</b>
+        <div class="flex text-center lg:text-left lg:pl-6 xl:text-center xl:pl-6 text-lg">
+          <BaseIcon
+              :path="mdiContactlessPayment"
+              :size="22"
+              class="relative top-0.5"
+          />
+          <span class="grow font-bold text-ellipsis line-clamp-1">
+              AladdinChat
+          </span>
         </div>
         <button
           class="lg:inline-block xl:hidden p-3"

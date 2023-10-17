@@ -15,7 +15,7 @@ import BaseButton from '@/Components/BaseButton.vue'
 import BaseButtons from '@/Components/BaseButtons.vue'
 
 const props = defineProps({
-  menu: {
+  category: {
     type: Object,
     default: () => ({}),
   },
@@ -33,7 +33,7 @@ const props = defineProps({
 const form = useForm({
   _method: 'put',
   name: props.item.name,
-  uri: props.item.uri,
+  slug: props.item.slug,
   description: props.item.description,
   enabled: props.item.enabled,
   parent_id: props.item.parent_id,
@@ -43,15 +43,15 @@ const form = useForm({
 
 <template>
   <LayoutAuthenticated>
-    <Head title="Update menu item" />
+    <Head title="Update category item" />
     <SectionMain>
       <SectionTitleLineWithButton
         :icon="mdiMenu"
-        title="Update menu item"
+        title="Update category item"
         main
       >
         <BaseButton
-          :route-name="route('menu.item.index', menu.id)"
+          :route-name="route('category.item.index', category.id)"
           :icon="mdiArrowLeftBoldOutline"
           label="Back"
           color="white"
@@ -61,7 +61,7 @@ const form = useForm({
       </SectionTitleLineWithButton>
       <CardBox
         form
-        @submit.prevent="form.post(route('menu.item.update', {menu: props.menu.id, item:props.item.id}))"
+        @submit.prevent="form.post(route('category.item.update', {category: props.category.id, item:props.item.id}))"
       >
         <FormField
           label="Name"
@@ -79,21 +79,17 @@ const form = useForm({
           </FormControl>
         </FormField>
         <FormField
-          label="Link"
-          :class="{ 'text-red-400': form.errors.uri }"
+          label="Slug"
+          :class="{ 'text-red-400': form.errors.slug }"
         >
           <FormControl
-            v-model="form.uri"
+            v-model="form.slug"
             type="text"
-            placeholder="Enter Link"
-            :error="form.errors.name"
+            placeholder="Enter Slug"
+            :error="form.errors.slug"
           >
-            <div class="item-list">
-                You can also enter an internal path such as <em class="placeholder">/home</em> or an external URL such as <em class="placeholder">http://example.com</em>. 
-                Add prefix <em class="placeholder">&lt;admin&gt;</em> to link for admin page. Enter <em class="placeholder">&lt;nolink&gt;</em> to display link text only.
-            </div>
-            <div class="text-red-400 text-sm" v-if="form.errors.uri">
-              {{ form.errors.uri }}
+            <div class="text-red-400 text-sm" v-if="form.errors.slug">
+              {{ form.errors.slug }}
             </div>
           </FormControl>
         </FormField>

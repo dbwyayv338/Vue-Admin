@@ -25,6 +25,12 @@ const props = defineProps({
     default: 0
   },
 })
+
+const emit = defineEmits(['delete'])
+
+const destroy = (id) => {
+    emit('delete', id)
+}
 </script>
 
 <template>

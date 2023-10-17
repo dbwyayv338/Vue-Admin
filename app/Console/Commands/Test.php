@@ -27,7 +27,8 @@ class Test extends Command
      */
     public function handle()
     {
-//        dd(MenuItem::selectOptions(1));
+//        $menu_item = \App\Http\Models\MenuItem::query()->role(1)->get();
+//        dd($menu_item->toArray());
     }
 
 }

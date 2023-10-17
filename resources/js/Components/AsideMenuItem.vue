@@ -54,7 +54,7 @@ const dropdownActive = value => {
 
 const activeInactiveStyle = computed(
     () => {
-        if (props.item.link && url === props.item.link) {
+        if (props.item.link && url.search(props.item.link) !== -1) {
             emit('dropdown-active', true)
             return styleStore.asideMenuItemActiveStyle
         } else {

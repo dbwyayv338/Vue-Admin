@@ -7,6 +7,7 @@ use App\Http\Requests\StoreMenuItemRequest;
 use App\Http\Requests\UpdateMenuItemRequest;
 use App\Http\Models\Menu;
 use App\Http\Models\MenuItem;
+use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
@@ -48,8 +49,11 @@ class MenuItemController extends Controller
     public function create(Menu $menu)
     {
         $item_options = MenuItem::selectOptions($menu->id);
+        $roles = Role::all()->pluck("name","id");
+
         return Inertia::render('Admin/Menu/Item/Create', [
             'menu' => $menu,
+            'roles' => $roles,
             'item_options' => $item_options
         ]);
     }
@@ -63,7 +67,10 @@ class MenuItemController extends Controller
      */
     public function store(StoreMenuItemRequest $request, Menu $menu)
     {
-        $menu->menuItems()->create($request->all());
+        $item = $menu->menuItems()->create($request->except(['roles']));
+
+        $roles = $request->roles ?? [];
+        $item->assignRole($roles);
 
         return redirect()->route('menu.item.index', $menu->id)
                         ->with('message', 'Menu created successfully.');
@@ -73,14 +80,20 @@ class MenuItemController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Http\Models\Menu $menu
+     * @param  \App\Http\Models\MenuItem $item
      * @return \Inertia\Response
      */
     public function edit(Menu $menu, MenuItem $item)
     {
         $item_options = MenuItem::selectOptions($menu->id, $item->parent_id ?? $item->id);
+        $roles = Role::all()->pluck("name","id");
+        $hasRoles = array_column(json_decode($item->roles, true), 'id');
+
         return Inertia::render('Admin/Menu/Item/Edit', [
             'menu' => $menu,
             'item' => $item,
+            'roles' => $roles,
+            'hasRoles' => $hasRoles,
             'item_options' => $item_options
         ]);
     }
@@ -95,7 +108,10 @@ class MenuItemController extends Controller
      */
     public function update(UpdateMenuItemRequest $request, Menu $menu, MenuItem $item)
     {
-        $item->update($request->all());
+        $item->update($request->except(['roles']));
+
+        $roles = $request->roles ?? [];
+        $item->syncRoles($roles);
 
         return redirect()->route('menu.item.index', $menu->id)
                         ->with('message', 'Menu Item updated successfully.');

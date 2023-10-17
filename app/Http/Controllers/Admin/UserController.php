@@ -50,7 +50,7 @@ class UserController extends Controller
             $users->latest();
         }
 
-        $users = $users->paginate(5)->onEachSide(2)->appends(request()->query());
+        $users = $users->paginate(20)->appends(request()->query());
 
         return Inertia::render('Admin/User/Index', [
             'users' => $users,
@@ -82,7 +82,7 @@ class UserController extends Controller
      *
      * @param  StoreUserRequest  $request
      * @param  CreateUser  $createUser
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreUserRequest $request, CreateUser $createUser)
     {
@@ -165,7 +165,7 @@ class UserController extends Controller
      */
     public function accountInfo()
     {
-        $user = \Auth::user();
+        $user = Auth::user();
 
         return Inertia::render('Admin/User/AccountInfo', [
             'user' => $user,

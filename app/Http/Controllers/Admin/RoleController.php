@@ -42,10 +42,10 @@ class RoleController extends Controller
             }
             $roles->orderBy($attribute, $sort_order);
         } else {
-            $roles->latest();
+            $roles->orderByDesc('id');
         }
 
-        $roles = $roles->paginate(5)->onEachSide(2)->appends(request()->query());
+        $roles = $roles->paginate(100)->appends(request()->query());
 
         return Inertia::render('Admin/Role/Index', [
             'roles' => $roles,

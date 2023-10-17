@@ -14,7 +14,7 @@ import BaseButton from '@/Components/BaseButton.vue'
 import BaseButtons from '@/Components/BaseButtons.vue'
 
 const props = defineProps({
-  menu: {
+  category: {
     type: Object,
     default: () => ({}),
   },
@@ -22,22 +22,22 @@ const props = defineProps({
 
 const form = useForm({
   _method: 'put',
-  name: props.menu.name,
-  description: props.menu.description
+  name: props.category.name,
+  description: props.category.description
 })
 </script>
 
 <template>
   <LayoutAuthenticated>
-    <Head title="Update menu" />
+    <Head title="Update Category Type" />
     <SectionMain>
       <SectionTitleLineWithButton
         :icon="mdiMenu"
-        title="Update menu"
+        title="Update Category Type"
         main
       >
         <BaseButton
-          :route-name="route('menu.index')"
+          :route-name="route('category.index')"
           :icon="mdiArrowLeftBoldOutline"
           label="Back"
           color="white"
@@ -47,7 +47,7 @@ const form = useForm({
       </SectionTitleLineWithButton>
       <CardBox
         form
-        @submit.prevent="form.post(route('menu.update', props.menu.id))"
+        @submit.prevent="form.post(route('category.update', props.category.id))"
       >
         <FormField
           label="Name"
@@ -67,7 +67,7 @@ const form = useForm({
         <FormField
           label="Machine Name"
         >
-        <div>{{ props.menu.machine_name }}</div>
+        <div>{{ props.category.machine_name }}</div>
         </FormField>
         <FormField
           label="Description"

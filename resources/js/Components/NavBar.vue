@@ -91,34 +91,6 @@ const logout = () => {
           class="max-h-screen-menu overflow-y-auto lg:overflow-visible lg:flex lg:items-stretch lg:justify-end lg:ml-auto"
         >
           <NavBarMenu>
-            <NavBarItemLabel
-              :icon="mdiMenu"
-              label="Sample menu"
-            />
-
-            <template #dropdown>
-              <NavBarItem>
-                <NavBarItemLabel
-                  :icon="mdiClockOutline"
-                  label="Item One"
-                />
-              </NavBarItem>
-              <NavBarItem>
-                <NavBarItemLabel
-                  :icon="mdiCloud"
-                  label="Item Two"
-                />
-              </NavBarItem>
-              <BaseDivider nav-bar />
-              <NavBarItem>
-                <NavBarItemLabel
-                  :icon="mdiCrop"
-                  label="Item Last"
-                />
-              </NavBarItem>
-            </template>
-          </NavBarMenu>
-          <NavBarMenu>
             <NavBarItemLabel :label="userName">
               <UserAvatarCurrentUser class="w-6 h-6 mr-3 inline-flex" />
             </NavBarItemLabel>
@@ -130,23 +102,11 @@ const logout = () => {
                   label="My Profile"
                 />
               </NavBarItem>
+              <BaseDivider nav-bar />
               <NavBarItem>
                 <NavBarItemLabel
                   :icon="mdiCogOutline"
                   label="Settings"
-                />
-              </NavBarItem>
-              <NavBarItem>
-                <NavBarItemLabel
-                  :icon="mdiEmail"
-                  label="Messages"
-                />
-              </NavBarItem>
-              <BaseDivider nav-bar />
-              <NavBarItem>
-                <NavBarItemLabel
-                  :icon="mdiLogout"
-                  label="Log Out"
                 />
               </NavBarItem>
             </template>
@@ -158,16 +118,6 @@ const logout = () => {
             <NavBarItemLabel
               :icon="mdiThemeLightDark"
               label="Light/Dark"
-              is-desktop-icon-only
-            />
-          </NavBarItem>
-          <NavBarItem
-            href="https://github.com/balajidharma/laravel-vue-admin-panel"
-            is-desktop-icon-only
-          >
-            <NavBarItemLabel
-              :icon="mdiGithub"
-              label="GitHub"
               is-desktop-icon-only
             />
           </NavBarItem>
