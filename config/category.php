@@ -2,8 +2,8 @@
 
 return [
     'models' => [
-        'category_type' => App\Http\Models\CategoryType::class,
-        'category_item' => App\Http\Models\CategoryItem::class,
+        'category_type' => App\Http\CategoryType::class,
+        'category_item' => App\Http\CategoryItem::class,
     ],
 
     'table_names' => [

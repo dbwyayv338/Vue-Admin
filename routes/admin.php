@@ -8,9 +8,7 @@ Route::group([
     'middleware' => ['auth','web'],
 ], function () {
 
-    Route::get('dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('admin.dashboard');
+    Route::get('dashboard', 'DashboardController@index')->name('admin.dashboard');
 
     Route::resource('user', 'UserController');
     Route::resource('role', 'RoleController');
@@ -24,4 +22,9 @@ Route::group([
     Route::get('edit-account-info', 'UserController@accountInfo')->name('admin.account.info');
     Route::post('edit-account-info', 'UserController@accountInfoStore')->name('admin.account.info.store');
     Route::post('change-password', 'UserController@changePasswordStore')->name('admin.account.password.store');
+    Route::post('switch-language', 'UserController@languageStore')->name('admin.account.language.store');
+
+    Route::get('template', function () {
+        return Inertia::render('Template');
+    })->name('admin.template');
 });

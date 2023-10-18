@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Http\Models\MenuItem;
+use App\Models\MenuItem;
 use Illuminate\Database\Seeder;
-use App\Http\Models\CategoryType;
-use App\Http\Models\Menu;
+use App\Models\CategoryType;
+use App\Models\Menu;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
@@ -104,6 +104,7 @@ class AdminCoreSeeder extends Seeder
         ]);
         $item->assignRole([$role2->id, $role3->id]);
 
+        //系统菜单
         $system_menu = $menu->menuItems()->create([
             'name' => 'System',
             'uri' => '<nolink>',
@@ -149,6 +150,13 @@ class AdminCoreSeeder extends Seeder
                 'parent_id' => $system_menu->id,
                 'weight' => 5,
             ],
+            [
+                'name' => 'Template',
+                'uri' => '/<admin>/template',
+                'enabled' => 1,
+                'parent_id' => $system_menu->id,
+                'weight' => 99,
+            ]
         ];
 
         $menu->menuItems()->createMany($menu_system_items);

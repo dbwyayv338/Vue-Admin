@@ -8,6 +8,7 @@ import {
   mdiAlertBoxOutline,
 } from "@mdi/js"
 import LayoutAuthenticated from "@/Layouts/LayoutAuthenticated.vue"
+import CardBoxModal from '@/Components/CardBoxModal.vue'
 import SectionMain from "@/Components/SectionMain.vue"
 import SectionTitleLineWithButton from "@/Components/SectionTitleLineWithButton.vue"
 import BaseButton from "@/Components/BaseButton.vue"
@@ -16,6 +17,7 @@ import BaseButtons from "@/Components/BaseButtons.vue"
 import NotificationBar from "@/Components/NotificationBar.vue"
 import Pagination from "@/Components/Admin/Pagination.vue"
 import Sort from "@/Components/Admin/Sort.vue"
+import {reactive} from "vue";
 
 const props = defineProps({
   roles: {
@@ -38,14 +40,29 @@ const form = useForm({
 
 const formDelete = useForm({})
 
-function destroy(id) {
-  if (confirm("Are you sure you want to delete?")) {
-    formDelete.delete(route("role.destroy", id))
-  }
-}
+const destroy = reactive({
+    id: 0,
+    isModalActive: false,
+    confirm: (id) => {
+        destroy.isModalActive = true
+        destroy.id = id
+    },
+    submit: () => {
+        formDelete.delete(route("role.destroy", destroy.id))
+    }
+})
 </script>
 
 <template>
+    <CardBoxModal
+        v-model="destroy.isModalActive"
+        large-title="Please confirm"
+        button="danger"
+        @confirm="destroy.submit"
+        has-cancel
+    >
+        <p>Are you sure you want to <b>delete?</b></p>
+    </CardBoxModal>
   <LayoutAuthenticated>
     <Head title="Roles" />
     <SectionMain>
@@ -143,7 +160,7 @@ function destroy(id) {
                     color="danger"
                     :icon="mdiTrashCan"
                     small
-                    @click="destroy(role.id)"
+                    @click="destroy.confirm(role.id)"
                   />
                 </BaseButtons>
               </td>

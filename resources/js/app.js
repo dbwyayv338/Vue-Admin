@@ -11,6 +11,10 @@ import { createInertiaApp, router } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 
+import {Lazyload, Locale} from 'vant';
+import enUS from 'vant/es/locale/lang/en-US';
+Locale.use('en-US', enUS);
+
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
 const pinia = createPinia()
@@ -26,6 +30,9 @@ createInertiaApp({
             .use(plugin)
             .use(pinia)
             .use(ZiggyVue, Ziggy)
+            .use(Lazyload, {
+                lazyComponent: true
+            })
             .mount(el);
     },
 });

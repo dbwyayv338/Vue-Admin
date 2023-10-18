@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Models\CategoryType;
+use App\Models\CategoryType;
 use App\Http\Requests\StoreCategoryTypeRequest;
 use App\Http\Requests\UpdateCategoryTypeRequest;
 use Illuminate\Support\Facades\Auth;
@@ -89,7 +89,7 @@ class CategoryTypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Http\Models\CategoryType  $category
+     * @param  \App\Models\CategoryType  $category
      * @return \Inertia\Response
      */
     public function edit(CategoryType $category)
@@ -103,7 +103,7 @@ class CategoryTypeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  UpdateCategoryTypeRequest  $request
-     * @param  \App\Http\Models\CategoryType  $category
+     * @param  \App\Http\CategoryType  $category
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateCategoryTypeRequest $request, CategoryType $category)
@@ -117,7 +117,7 @@ class CategoryTypeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Http\Models\CategoryType  $category
+     * @param  \App\Models\CategoryType  $category
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(CategoryType $category)

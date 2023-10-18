@@ -197,6 +197,29 @@ class UserController extends Controller
     }
 
     /**
+     * Save the modified personal language for a user.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function languageStore(Request $request)
+    {
+        $request->validate([
+            'lang' => ['required', 'string', 'max:255'],
+        ]);
+
+        $user = Auth::user()->update(['lang' => $request->lang]);
+
+        if ($user) {
+            $message = 'Language updated successfully.';
+        } else {
+            $message = 'Error while saving. Please try again.';
+        }
+
+        return redirect()->route('admin.dashboard')->with('message', __($message));
+    }
+
+    /**
      * Save the new password for a user.
      *
      * @param  \Illuminate\Http\Request  $request

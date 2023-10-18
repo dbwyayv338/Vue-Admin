@@ -40,15 +40,15 @@ const form = useForm({
 
 const formDelete = useForm({})
 
-const destory = reactive({
+const destroy = reactive({
     id: 0,
     isModalActive: false,
     confirm: (id) => {
-        destory.isModalActive = true
-        destory.id = id
+        destroy.isModalActive = true
+        destroy.id = id
     },
     submit: () => {
-        formDelete.delete(route("permission.destroy", destory.id))
+        formDelete.delete(route("permission.destroy", destroy.id))
     }
 })
 
@@ -56,10 +56,10 @@ const destory = reactive({
 
 <template>
     <CardBoxModal
-        v-model="destory.isModalActive"
+        v-model="destroy.isModalActive"
         large-title="Please confirm"
         button="danger"
-        @confirm="destory.submit"
+        @confirm="destroy.submit"
         has-cancel
     >
         <p>Are you sure you want to <b>delete?</b></p>

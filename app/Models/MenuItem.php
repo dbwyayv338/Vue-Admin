@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Models;
+namespace App\Models;
 
 use App\Http\Traits\MenuTree;
 use Illuminate\Database\Eloquent\Model;

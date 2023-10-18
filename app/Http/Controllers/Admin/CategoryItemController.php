@@ -7,8 +7,8 @@ use App\Http\Requests\StoreCategoryItemRequest;
 use App\Http\Requests\StoreMenuItemRequest;
 use App\Http\Requests\UpdateCategoryItemRequest;
 use App\Http\Requests\UpdateMenuItemRequest;
-use App\Http\Models\CategoryType;
-use App\Http\Models\CategoryItem;
+use App\Models\CategoryType;
+use App\Models\CategoryItem;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 

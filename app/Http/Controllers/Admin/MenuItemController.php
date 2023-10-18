@@ -5,8 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMenuItemRequest;
 use App\Http\Requests\UpdateMenuItemRequest;
-use App\Http\Models\Menu;
-use App\Http\Models\MenuItem;
+use App\Models\Menu;
+use App\Models\MenuItem;
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -62,7 +62,7 @@ class MenuItemController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  StoreMenuItemRequest  $request
-     * @param  \App\Http\Models\Menu $menu
+     * @param  \App\Models\Menu $menu
      * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreMenuItemRequest $request, Menu $menu)
@@ -79,8 +79,8 @@ class MenuItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Http\Models\Menu $menu
-     * @param  \App\Http\Models\MenuItem $item
+     * @param  \App\Models\Menu $menu
+     * @param  \App\Models\MenuItem $item
      * @return \Inertia\Response
      */
     public function edit(Menu $menu, MenuItem $item)
@@ -102,8 +102,8 @@ class MenuItemController extends Controller
      * Update the specified resource in storage.
      *
      * @param  UpdateMenuItemRequest  $request
-     * @param  \App\Http\Models\Menu $menu
-     * @param  \App\Http\Models\MenuItem $item
+     * @param  \App\Models\Menu $menu
+     * @param  \App\Models\MenuItem $item
      * @return \Illuminate\Http\RedirectResponse
      */
     public function update(UpdateMenuItemRequest $request, Menu $menu, MenuItem $item)
@@ -120,8 +120,8 @@ class MenuItemController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Http\Models\Menu $menu
-     * @param  \App\Http\Models\MenuItem $menuItem
+     * @param  \App\Models\Menu $menu
+     * @param  \App\Models\MenuItem $menuItem
      * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Menu $menu, MenuItem $item)
