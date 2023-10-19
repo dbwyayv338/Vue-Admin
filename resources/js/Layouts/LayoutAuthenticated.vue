@@ -1,9 +1,9 @@
 <script setup>
 import { useLayoutStore } from '@/Stores/layout.js'
 import { useStyleStore } from '@/Stores/style.js'
-import NavBar from '@/Components/NavBar.vue'
-import AsideMenu from '@/Components/AsideMenu.vue'
-import FooterBar from '@/Components/FooterBar.vue'
+import NavBar from '@/Components/Base/NavBar.vue'
+import AsideMenu from '@/Components/Base/AsideMenu.vue'
+import FooterBar from '@/Components/Base/FooterBar.vue'
 
 const styleStore = useStyleStore()
 

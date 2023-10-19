@@ -23,6 +23,8 @@
     },
     "dependencies": {
         "@inertiajs/vue3": "^1.0.0",
-        "vant": "^4.7.2"
+        "unplugin-vue-components": "^0.25.2",
+        "vant": "^4.7.2",
+        "vue-i18n": "^9.5.0"
     }
 }

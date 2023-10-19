@@ -5,15 +5,15 @@ import {
     mdiArrowLeftBoldOutline
 } from "@mdi/js"
 import LayoutAuthenticated from "@/Layouts/LayoutAuthenticated.vue"
-import SectionMain from "@/Components/SectionMain.vue"
-import SectionTitleLineWithButton from "@/Components/SectionTitleLineWithButton.vue"
-import CardBox from "@/Components/CardBox.vue"
-import FormField from '@/Components/FormField.vue'
-import FormControl from '@/Components/FormControl.vue'
-import FormCheckRadioGroup from '@/Components/FormCheckRadioGroup.vue'
-import BaseButton from '@/Components/BaseButton.vue'
-import BaseButtons from '@/Components/BaseButtons.vue'
-import BaseDivider from '@/Components/BaseDivider.vue'
+import SectionMain from "@/Components/Base/SectionMain.vue"
+import SectionTitleLineWithButton from "@/Components/Base/SectionTitleLineWithButton.vue"
+import CardBox from "@/Components/Base/CardBox.vue"
+import FormField from '@/Components/Base/FormField.vue'
+import FormControl from '@/Components/Base/FormControl.vue'
+import FormCheckRadioGroup from '@/Components/Base/FormCheckRadioGroup.vue'
+import BaseButton from '@/Components/Base/BaseButton.vue'
+import BaseButtons from '@/Components/Base/BaseButtons.vue'
+import BaseDivider from '@/Components/Base/BaseDivider.vue'
 
 const props = defineProps({
     menu: {

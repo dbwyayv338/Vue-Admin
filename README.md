@@ -12,6 +12,7 @@
 - [Laravel Breeze](https://github.com/laravel/breeze)
 - [balajidharma/laravel-menu](https://github.com/balajidharma/laravel-menu)
 - [Vue 3](https://vuejs.org/)
+- [Vant 4](https://vant-contrib.gitee.io/vant)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Inertiajs](https://inertiajs.com/)
 - [Admin One - Admin Dashboard](https://github.com/justboil/admin-one-vue-tailwind)

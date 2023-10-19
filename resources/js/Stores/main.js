@@ -7,6 +7,7 @@ export const useMainStore = defineStore('main', {
     userName: null,
     userEmail: null,
     userAvatar: null,
+    userLang: 'en-US',
 
     /* Field focus with ctrl+k (to register only once) */
     isFieldFocusRegistered: false,
@@ -25,6 +26,9 @@ export const useMainStore = defineStore('main', {
       }
       if (payload.avatar) {
         this.userAvatar = payload.avatar
+      }
+      if (payload.lang) {
+        this.userLang = payload.lang
       }
     },
 

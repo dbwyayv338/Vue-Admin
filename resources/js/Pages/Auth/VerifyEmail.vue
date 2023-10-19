@@ -2,14 +2,14 @@
 import { useForm, Head, Link } from '@inertiajs/vue3'
 import { computed } from 'vue'
 import LayoutGuest from '@/Layouts/LayoutGuest.vue'
-import SectionFullScreen from '@/Components/SectionFullScreen.vue'
-import CardBox from '@/Components/CardBox.vue'
-import FormField from '@/Components/FormField.vue'
-import BaseDivider from '@/Components/BaseDivider.vue'
-import BaseButton from '@/Components/BaseButton.vue'
-import FormValidationErrors from '@/Components/FormValidationErrors.vue'
-import NotificationBarInCard from '@/Components/NotificationBarInCard.vue'
-import BaseLevel from '@/Components/BaseLevel.vue'
+import SectionFullScreen from '@/Components/Base/SectionFullScreen.vue'
+import CardBox from '@/Components/Base/CardBox.vue'
+import FormField from '@/Components/Base/FormField.vue'
+import BaseDivider from '@/Components/Base/BaseDivider.vue'
+import BaseButton from '@/Components/Base/BaseButton.vue'
+import FormValidationErrors from '@/Components/Base/FormValidationErrors.vue'
+import NotificationBarInCard from '@/Components/Base/NotificationBarInCard.vue'
+import BaseLevel from '@/Components/Base/BaseLevel.vue'
 
 const props = defineProps({
   status: {
@@ -42,7 +42,7 @@ const submit = () => {
       >
         <FormValidationErrors />
 
-        <NotificationBarInCard 
+        <NotificationBarInCard
           v-if="verificationLinkSent"
           color="info"
         >

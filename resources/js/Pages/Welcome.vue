@@ -16,11 +16,11 @@ defineProps({
             <div>
                 <div v-if="canLogin">
                     <Link v-if="$page.props.auth.user" :href="route('admin.dashboard')">
-                        Dashboard
+                        {{$t('dashboard')}}
                     </Link>
                     <div v-else>
-                        <Link :href="route('login')">Log in</Link>
-                        <Link class="ml-6" v-if="canRegister" :href="route('register')">Register</Link>
+                        <Link :href="route('login')">{{$t('login')}}</Link>
+                        <Link class="ml-6" v-if="canRegister" :href="route('register')">{{$t('register')}}</Link>
                     </div>
                 </div>
             </div>

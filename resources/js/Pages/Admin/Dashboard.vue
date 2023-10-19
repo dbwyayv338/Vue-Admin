@@ -1,5 +1,5 @@
 <script setup>
-import {Head, useForm} from '@inertiajs/vue3'
+import {Head, useForm, usePage} from '@inertiajs/vue3'
 import {computed, ref, onMounted, reactive} from 'vue'
 import {useMainStore} from '@/Stores/main'
 import {
@@ -13,28 +13,44 @@ import {
 } from '@mdi/js'
 import * as chartConfig from '@/Components/Charts/chart.config.js'
 import LineChart from '@/Components/Charts/LineChart.vue'
-import SectionMain from '@/Components/SectionMain.vue'
-import CardBoxWidget from '@/Components/CardBoxWidget.vue'
-import CardBox from '@/Components/CardBox.vue'
-import NotificationBar from '@/Components/NotificationBar.vue'
+import SectionMain from '@/Components/Base/SectionMain.vue'
+import CardBoxWidget from '@/Components/Base/CardBoxWidget.vue'
+import CardBox from '@/Components/Base/CardBox.vue'
+import NotificationBar from '@/Components/Base/NotificationBar.vue'
 import LayoutAuthenticated from '@/Layouts/LayoutAuthenticated.vue'
-import SectionTitleLineWithButton from '@/Components/SectionTitleLineWithButton.vue'
+import SectionTitleLineWithButton from '@/Components/Base/SectionTitleLineWithButton.vue'
 import SwitchLanguage from '@/Components/Admin/SwitchLanguage.vue'
+import {currentLanguage} from "@/config";
 
 const chartData = ref(null)
+
 const fillChartData = () => {
     chartData.value = chartConfig.sampleChartData()
 }
+
+const mainStore = useMainStore()
+const user = computed(() => usePage().props.auth.user)
+mainStore.setUser(user.value)
+
+//切换为用户默认语言
+const defaultLanguage = () => {
+    let lang = localStorage[currentLanguage] ?? 'en_US'
+    if(lang !== user.value.lang){
+        localStorage[currentLanguage] = user.value.lang
+        location.reload()
+    }
+}
+
 onMounted(() => {
     fillChartData()
+    defaultLanguage()
 })
-const mainStore = useMainStore()
 
 </script>
 
 <template>
     <LayoutAuthenticated>
-        <Head title="Dashboard"/>
+        <Head :title="$t('welcome')" />
         <SectionMain>
             <NotificationBar
                 :key="Date.now()"
@@ -46,7 +62,7 @@ const mainStore = useMainStore()
             </NotificationBar>
             <SectionTitleLineWithButton
                 :icon="mdiChartTimelineVariant"
-                title="Overview"
+                :title="$t('overview')"
                 main
             >
                 <SwitchLanguage/>
@@ -83,7 +99,7 @@ const mainStore = useMainStore()
 
             <SectionTitleLineWithButton
                 :icon="mdiChartPie"
-                title="Trends overview"
+                :title="$t('trends_overview')"
             />
 
             <CardBox

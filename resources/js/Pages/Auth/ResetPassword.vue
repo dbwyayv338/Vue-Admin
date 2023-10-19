@@ -2,13 +2,13 @@
 import { useForm, Head, Link } from '@inertiajs/vue3'
 import { mdiEmail, mdiFormTextboxPassword } from '@mdi/js'
 import LayoutGuest from '@/Layouts/LayoutGuest.vue'
-import SectionFullScreen from '@/Components/SectionFullScreen.vue'
-import CardBox from '@/Components/CardBox.vue'
-import FormField from '@/Components/FormField.vue'
-import FormControl from '@/Components/FormControl.vue'
-import BaseDivider from '@/Components/BaseDivider.vue'
-import BaseButton from '@/Components/BaseButton.vue'
-import FormValidationErrors from '@/Components/FormValidationErrors.vue'
+import SectionFullScreen from '@/Components/Base/SectionFullScreen.vue'
+import CardBox from '@/Components/Base/CardBox.vue'
+import FormField from '@/Components/Base/FormField.vue'
+import FormControl from '@/Components/Base/FormControl.vue'
+import BaseDivider from '@/Components/Base/BaseDivider.vue'
+import BaseButton from '@/Components/Base/BaseButton.vue'
+import FormValidationErrors from '@/Components/Base/FormValidationErrors.vue'
 
 const props = defineProps({
   email: {

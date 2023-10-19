@@ -5,10 +5,10 @@ import {
   mdiArrowLeftBoldOutline,
 } from "@mdi/js"
 import LayoutAuthenticated from "@/Layouts/LayoutAuthenticated.vue"
-import SectionMain from "@/Components/SectionMain.vue"
-import SectionTitleLineWithButton from "@/Components/SectionTitleLineWithButton.vue"
-import CardBox from "@/Components/CardBox.vue"
-import BaseButton from "@/Components/BaseButton.vue"
+import SectionMain from "@/Components/Base/SectionMain.vue"
+import SectionTitleLineWithButton from "@/Components/Base/SectionTitleLineWithButton.vue"
+import CardBox from "@/Components/Base/CardBox.vue"
+import BaseButton from "@/Components/Base/BaseButton.vue"
 
 const props = defineProps({
   role: {

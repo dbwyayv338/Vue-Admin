@@ -1,9 +1,10 @@
 <script setup>
 import {Link, useForm, usePage} from "@inertiajs/vue3"
-import BaseButton from "@/Components/BaseButton.vue"
-import CardBoxModal from "@/Components/CardBoxModal.vue"
+import BaseButton from "@/Components/Base/BaseButton.vue"
+import CardBoxModal from "@/Components/Base/CardBoxModal.vue"
 import { mdiSignLanguage } from "@mdi/js"
 import {computed, reactive} from "vue";
+import {currentLanguage} from "@/config";
 
 const lang = computed(() => usePage().props.auth.user.lang)
 
@@ -13,16 +14,18 @@ const language = reactive({
     list: [
         {
             label: 'English',
-            value: 'en'
+            value: 'en_US'
         },
         {
             label: '中文',
-            value: 'zh'
+            value: 'zh_CN'
         }
     ],
     change: () => {
         language.isModalActive = false
+        localStorage.setItem(currentLanguage, form.lang)
         form.post(route('admin.account.language.store'))
+        location.reload()
     }
 })
 

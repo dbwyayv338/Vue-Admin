@@ -15,6 +15,8 @@ import {Lazyload, Locale} from 'vant';
 import enUS from 'vant/es/locale/lang/en-US';
 Locale.use('en-US', enUS);
 
+import i18n from "./lang/index";
+
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
 const pinia = createPinia()
@@ -29,6 +31,7 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(pinia)
+            .use(i18n)
             .use(ZiggyVue, Ziggy)
             .use(Lazyload, {
                 lazyComponent: true

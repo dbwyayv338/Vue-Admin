@@ -1,7 +1,7 @@
 <script setup>
 import { Link } from "@inertiajs/vue3"
-import BaseButton from "@/Components/BaseButton.vue"
-import BaseButtons from "@/Components/BaseButtons.vue"
+import BaseButton from "@/Components/Base/BaseButton.vue"
+import BaseButtons from "@/Components/Base/BaseButtons.vue"
 import {
   mdiSquareEditOutline,
   mdiTrashCan,

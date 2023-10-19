@@ -8,13 +8,13 @@ import {
   mdiAlertBoxOutline,
 } from "@mdi/js"
 import LayoutAuthenticated from "@/Layouts/LayoutAuthenticated.vue"
-import CardBoxModal from '@/Components/CardBoxModal.vue'
-import SectionMain from "@/Components/SectionMain.vue"
-import SectionTitleLineWithButton from "@/Components/SectionTitleLineWithButton.vue"
-import BaseButton from "@/Components/BaseButton.vue"
-import CardBox from "@/Components/CardBox.vue"
-import BaseButtons from "@/Components/BaseButtons.vue"
-import NotificationBar from "@/Components/NotificationBar.vue"
+import CardBoxModal from '@/Components/Base/CardBoxModal.vue'
+import SectionMain from "@/Components/Base/SectionMain.vue"
+import SectionTitleLineWithButton from "@/Components/Base/SectionTitleLineWithButton.vue"
+import BaseButton from "@/Components/Base/BaseButton.vue"
+import CardBox from "@/Components/Base/CardBox.vue"
+import BaseButtons from "@/Components/Base/BaseButtons.vue"
+import NotificationBar from "@/Components/Base/NotificationBar.vue"
 import Pagination from "@/Components/Admin/Pagination.vue"
 import Sort from "@/Components/Admin/Sort.vue"
 import {reactive} from "vue";
