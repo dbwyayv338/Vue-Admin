@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Tightenco\Ziggy\Ziggy;
 use App\Models\Menu;
 
@@ -49,7 +50,11 @@ class HandleInertiaRequests extends Middleware
             ],
             'navigation' => [
                 'menu' => Menu::getMenuTree('admin')
-            ]
+            ],
+            'locale' => [
+                'current' => app()->getLocale(),
+                'available' => LaravelLocalization::getSupportedLocales()
+            ],
         ]);
     }
 }

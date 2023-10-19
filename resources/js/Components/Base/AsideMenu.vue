@@ -2,7 +2,6 @@
 import { reactive, computed } from 'vue'
 import { usePage } from '@inertiajs/vue3'
 import { useLayoutStore } from '@/Stores/layout.js'
-//import menu from '@/menu.js'
 import AsideMenuLayer from '@/Components/Base/AsideMenuLayer.vue'
 import OverlayLayer from '@/Components/Base/OverlayLayer.vue'
 

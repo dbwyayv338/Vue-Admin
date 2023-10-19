@@ -6,21 +6,13 @@ import { mdiSignLanguage } from "@mdi/js"
 import {computed, reactive} from "vue";
 import {currentLanguage} from "@/config";
 
-const lang = computed(() => usePage().props.auth.user.lang)
+const userLang = computed(() => usePage().props.auth.user.lang)
+let locales = computed(() => usePage().props.locale.available)
 
 const language = reactive({
-    current: lang,
+    current: userLang,
     isModalActive: false,
-    list: [
-        {
-            label: 'English',
-            value: 'en_US'
-        },
-        {
-            label: '中文',
-            value: 'zh_CN'
-        }
-    ],
+    list: locales,
     change: () => {
         language.isModalActive = false
         localStorage.setItem(currentLanguage, form.lang)
@@ -58,10 +50,10 @@ const form = useForm({
             >
                 <option
                     v-for="item in language.list"
-                    :key="item.value"
-                    :value="item.value"
+                    :key="item.regional"
+                    :value="item.regional"
                 >
-                    {{ item.label }}
+                    {{ item.native }}
                 </option>
             </select>
         </p>

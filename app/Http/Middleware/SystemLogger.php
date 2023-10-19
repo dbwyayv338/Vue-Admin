@@ -33,7 +33,7 @@ class SystemLogger
         Log::create([
             'geoip'      => $request->getClientIp(),
             'user_id'    => auth('web')->guest() ? 0 : $request->user('web')->getAuthIdentifier(),
-            'username'   => auth('web')->guest() ? '' : $request->user('web')->username,
+            'username'   => auth('web')->guest() ? '' : $request->user('web')->email,
             'user_agent' => $request->userAgent(),
             'request'    => [
                 'query'       => $request->query,
