@@ -1,4 +1,5 @@
 import '../css/main.css';
+import './bootstrap'
 
 import { createPinia } from 'pinia'
 import { useStyleStore } from '@/Stores/style.js'

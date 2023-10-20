@@ -9,14 +9,19 @@ use App\Http\Actions\User\CreateUser;
 use App\Http\Actions\User\UpdateUser;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use Exception;
+use Flugg\Responder\Http\MakesResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class UserController extends Controller
 {
+    use MakesResponses;
+
     public function __construct()
     {
         $this->middleware('can:user list', ['only' => ['index', 'show']]);
@@ -193,6 +198,7 @@ class UserController extends Controller
             $message = 'Error while saving. Please try again.';
         }
 
+
         return redirect()->route('admin.account.info')->with('message', __($message));
     }
 
@@ -257,5 +263,67 @@ class UserController extends Controller
         }
 
         return redirect()->route('admin.account.info')->with('message', __($message));
+    }
+
+    /**
+     * 上传图片
+     */
+    public function Upload(Request $request)
+    {
+        $type = request('type');
+        if (!in_array($type, explode(',', strtolower('jpg,jpeg,png,gif,bmp')))) {
+            return $this->error(401, 'allow ext error');
+        }
+
+        $base64 = request('base64');
+        if (str_starts_with($base64, 'data')) {
+            $base64 = substr(request('base64'), 22);
+        }
+
+        $file_name = uniqid(date('His')) . '.' . $type;
+        $imagePath = 'user/' . date('Ymd') . '/' . $file_name;
+
+        try {
+            Storage::disk('public')->put($imagePath, base64_decode($base64));
+            $url = Storage::disk('public')->url($imagePath);
+            return $this->success(['url' => $url]);
+        } catch (Exception $e) {
+            return $this->error(500, $e->getMessage());
+        }
+    }
+
+    /**
+     * 上传文件
+     */
+    public function UploadFile(Request $request)
+    {
+        $type = request('type');
+        //支持的文件类型
+        $enable_ext = [
+            'doc' => 'application/msword',
+            'docx' => 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'xls' => 'application/vnd.ms-excel',
+            'xlsx' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'txt' => 'text/plain',
+        ];
+        if (!in_array($type, $enable_ext)) {
+            return $this->error(401, 'Please upload word, excel, txt documents');
+        }
+
+        $base64 = request('base64');
+        if (str_starts_with($base64, 'data')) {
+            $base64 = substr(request('base64'), 22);
+        }
+
+        $file_name = request('name');
+        $imagePath = 'file/' . uniqid(date('YmdHis')) . '/' . $file_name;
+
+        try {
+            Storage::disk('public')->put($imagePath, base64_decode($base64));
+            $url = Storage::disk('public')->url($imagePath);
+            return $this->success(['url' => $url]);
+        } catch (Exception $e) {
+            return $this->error(500, $e->getMessage());
+        }
     }
 }

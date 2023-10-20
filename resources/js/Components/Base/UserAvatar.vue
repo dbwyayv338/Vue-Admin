@@ -12,7 +12,7 @@ const props = defineProps({
   },
   api: {
     type: String,
-    default: 'avataaars'
+    default: ''
   }
 })
 

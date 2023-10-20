@@ -21,6 +21,7 @@ import NotificationBar from "@/Components/Base/NotificationBar.vue"
 import LayoutAuthenticated from "@/Layouts/LayoutAuthenticated.vue"
 import SectionTitleLineWithButton from "@/Components/Base/SectionTitleLineWithButton.vue"
 import Uploader from '@/Components/Admin/Uploader.vue'
+import UploaderFile from "@/Components/Admin/UploaderFile.vue";
 
 const props = defineProps({
     user: {
@@ -32,6 +33,7 @@ const props = defineProps({
 const profileForm = useForm({
     name: props.user.name,
     email: props.user.email,
+    avatar: props.user.avatar,
 })
 const passwordForm = useForm({
     old_password: null,
@@ -109,10 +111,10 @@ const passwordForm = useForm({
 
                     <FormField
                         label="Avatar"
-                        help="Click to upload your avatar"
+                        help="Max: 500K"
                         :class="{ 'text-red-400': profileForm.errors.avatar }"
                     >
-                        <Uploader />
+                        <Uploader v-model="profileForm.avatar" />
                     </FormField>
 
                     <template #footer>

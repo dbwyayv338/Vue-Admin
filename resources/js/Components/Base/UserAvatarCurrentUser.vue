@@ -3,12 +3,13 @@ import { computed } from 'vue'
 import { usePage } from '@inertiajs/vue3'
 import UserAvatar from '@/Components/Base/UserAvatar.vue'
 
-const userName = computed(() => usePage().props.auth.user.name)
+const user = computed(() => usePage().props.auth.user)
 </script>
 
 <template>
   <UserAvatar
-    :username="userName"
+    :username="user.name"
+    :avatar="user.avatar"
     api="initials"
   />
 </template>

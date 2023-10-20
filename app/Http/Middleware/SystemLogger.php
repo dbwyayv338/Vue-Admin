@@ -13,7 +13,8 @@ class SystemLogger
 {
     public array $except
         = [
-
+            'admin/upload',
+            'admin/upload-file',
         ];
 
     public function handle($request, \Closure $next)

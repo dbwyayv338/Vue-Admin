@@ -24,6 +24,9 @@ Route::group([
     Route::post('change-password', 'UserController@changePasswordStore')->name('admin.account.password.store');
     Route::post('switch-language', 'UserController@languageStore')->name('admin.account.language.store');
 
+    Route::post('upload', 'UserController@Upload')->name('admin.upload');
+    Route::post('upload-file', 'UserController@UploadFile')->name('admin.upload.file');
+
     Route::get('template', function () {
         return Inertia::render('Template');
     })->name('admin.template');
