@@ -7,5 +7,6 @@ export default {
     "Menus": "菜单管理",
     "Categories": "分类管理",
     "Permissions": "权限管理",
+    "Site Setting": "站点配置",
     "Template": "样式模板",
 };

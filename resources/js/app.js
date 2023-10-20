@@ -13,6 +13,7 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 
 import {Lazyload, Locale} from 'vant';
+import 'vant/lib/index.css';
 import enUS from 'vant/es/locale/lang/en-US';
 Locale.use('en-US', enUS);
 

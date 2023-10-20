@@ -1,6 +1,6 @@
 <script setup>
 import {computed, onMounted, reactive, ref} from "vue";
-import {showToast} from "vant";
+import {showNotify} from "vant";
 import 'vant/lib/index.css';
 
 const props = defineProps({
@@ -21,7 +21,7 @@ const upload = reactive({
         let type = file.name;
         type = type.substring(type.lastIndexOf('.') + 1);
         if(!/(doc|docx|xls|xlsx|txt)$/.test(type.toLowerCase())){
-            showToast({
+            showNotify({
                 message: 'Please upload word, excel, txt documents',
             });
             return false;
@@ -45,12 +45,12 @@ const upload = reactive({
                     upload_files.urls = res.data.data.url;
                     emit('update:modelValue', upload_files.urls);
                 } else {
-                    showToast({
+                    showNotify({
                         message: res.data.error.message,
                     });
                 }
             } else {
-                showToast({
+                showNotify({
                     message: "Upload failed",
                 });
             }

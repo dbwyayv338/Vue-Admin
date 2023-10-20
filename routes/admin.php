@@ -27,6 +27,9 @@ Route::group([
     Route::post('upload', 'UserController@Upload')->name('admin.upload');
     Route::post('upload-file', 'UserController@UploadFile')->name('admin.upload.file');
 
+    Route::get('setting', 'ConfigController@setting')->name('admin.setting');
+    Route::post('setting', 'ConfigController@setting')->name('admin.setting.store');
+
     Route::get('template', function () {
         return Inertia::render('Template');
     })->name('admin.template');

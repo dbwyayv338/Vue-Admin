@@ -52,6 +52,7 @@ class AdminCoreSeeder extends Seeder
             'category.item create',
             'category.item edit',
             'category.item delete',
+            'config list',
         ];
 
         foreach ($permissions as $permission) {
@@ -149,6 +150,13 @@ class AdminCoreSeeder extends Seeder
                 'enabled' => 1,
                 'parent_id' => $system_menu->id,
                 'weight' => 5,
+            ],
+            [
+                'name' => 'Site Setting',
+                'uri' => '/<admin>/setting',
+                'enabled' => 1,
+                'parent_id' => $system_menu->id,
+                'weight' => 6,
             ],
             [
                 'name' => 'Template',

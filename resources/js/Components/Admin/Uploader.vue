@@ -1,6 +1,7 @@
 <script setup>
 import {computed, onMounted, reactive, ref} from "vue";
-import {showToast} from "vant";
+import {showNotify} from "vant";
+import 'vant/lib/index.css';
 
 const props = defineProps({
     modelValue: {
@@ -40,7 +41,7 @@ const images = reactive({
 const upload = reactive({
     beforeRead: (file) => {
         if (!/\/(gif|jpg|jpeg|png|bmp)$/.test(file.type.toLowerCase())) {
-            showToast({
+            showNotify({
                 message: 'Please upload gif, jpg, png, jpeg, bmp documents',
             });
             return false;
@@ -48,6 +49,9 @@ const upload = reactive({
         return true;
     },
     afterRead: (file) => {
+        file.status = 'uploading';
+        file.message = 'uploading';
+
         let name = file.file.name;
         let type = file.file.type;
         type = type.substring(type.indexOf('/') + 1, type.length);
@@ -90,14 +94,17 @@ const upload = reactive({
                             images.files.splice(0, 1);
                         }
                     }
+                    let last_file = images.files[images.files.length - 1];
+                    last_file.status = 'done';
+                    last_file.message = 'finished';
                     emit('update:modelValue', images.urls);
                 } else {
-                    showToast({
+                    showNotify({
                         message: res.data.error.message,
                     });
                 }
             } else {
-                showToast({
+                showNotify({
                     message: "Upload failed",
                 });
             }

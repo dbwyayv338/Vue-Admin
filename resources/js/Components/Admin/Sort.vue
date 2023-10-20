@@ -20,7 +20,7 @@ const sortLink = computed(() => {
   let url = new URL(document.location)
   let sortValue = url.searchParams.get("sort")
 
-  if (sortValue == props.attribute) {
+  if (sortValue === props.attribute) {
     url.searchParams.set("sort", "-" + props.attribute)
     upFill.value = "black"
   } else if (sortValue === "-" + props.attribute) {
