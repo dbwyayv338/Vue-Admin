@@ -1,6 +1,6 @@
 <script setup>
 import {usePage, router} from '@inertiajs/vue3'
-import {computed, ref} from 'vue'
+import {computed, reactive, ref} from 'vue'
 import {containerMaxW, darkModeKey, styleKey} from '@/config'
 import {useMainStore} from '@/Stores/main.js'
 import {useStyleStore} from '@/Stores/style.js'
@@ -27,6 +27,7 @@ import BaseDivider from '@/Components/Base/BaseDivider.vue'
 import UserAvatarCurrentUser from '@/Components/Base/UserAvatarCurrentUser.vue'
 import BaseIcon from '@/Components/Base/BaseIcon.vue'
 import NavBarSearch from '@/Components/Base/NavBarSearch.vue'
+import CardBoxModal from '@/Components/Base/CardBoxModal.vue'
 
 const mainStore = useMainStore()
 
@@ -64,15 +65,34 @@ const selectStyle = (style) => {
     styleStore.setStyle(style)
 }
 
-const logout = () => {
+const logout1 = () => {
     router.post(route('logout'))
 }
+
+const logout = reactive({
+    isModalActive: false,
+    confirm: (id) => {
+        logout.isModalActive = true
+    },
+    submit: () => {
+        router.post(route('logout'))
+    }
+})
 </script>
 
 <template>
     <nav
         class="top-0 left-0 right-0 fixed bg-gray-100 h-14 z-30 w-screen transition-position xl:pl-60 lg:w-auto dark:bg-slate-800"
     >
+        <CardBoxModal
+            v-model="logout.isModalActive"
+            large-title="Please confirm"
+            button="danger"
+            @confirm="logout.submit"
+            has-cancel
+        >
+            <p>Are you sure you want to <b>logout?</b></p>
+        </CardBoxModal>
         <div
             class="flex lg:items-stretch"
             :class="containerMaxW"
@@ -149,7 +169,7 @@ const logout = () => {
                     </NavBarItem>
                     <NavBarItem
                         is-desktop-icon-only
-                        @click="logout"
+                        @click="logout.confirm"
                     >
                         <NavBarItemLabel
                             :icon="mdiLogout"

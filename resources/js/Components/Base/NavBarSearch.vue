@@ -19,7 +19,7 @@ const search = () => {
             }
         }
     };
-    if(keyword.value.length > 0) {
+    if (keyword.value.length > 0) {
         search_result.value = [];
         searchMenu(menu);
     } else {
@@ -62,19 +62,34 @@ onMounted(() => {
         <div class="relative">
             <div
                 v-show="search_result.length > 0"
-                class="absolute w-screen lg:w-[400px] left-[-60px] lg:left-[0px] top-[50px] border-solid lg:border border-gray-400 border-round-2">
+                class="absolute w-screen lg:w-[400px] left-[-60px] lg:left-[0px] top-[50px] rounded-md
+                   border-indigo-600
+                   ring
+                   ring-indigo-200
+                   ring-opacity-50
+                "
+            >
                 <van-cell-group>
                     <van-cell
                         v-for="item in search_result"
                         :title="$t(item.name)"
                         :value="item.link"
                         :url="item.link"
-                        is-link />
+                        is-link/>
                 </van-cell-group>
             </div>
-            <input class="border-none bg-gray-100 w-[220px]"
+            <input class="
+                   rounded-md
+                   shadow-sm
+                   border-gray-100
+                   bg-gray-100
+                   focus:border-indigo-300
+                   focus:ring
+                   focus:ring-indigo-200
+                   focus:ring-opacity-50
+                   w-[220px]"
                    ref="inputEl"
-                   v-model="keyword" @keyup="search" @blur="clear" type="text" placeholder="Quick Navigation (Ctrl+K)" />
+                   v-model="keyword" @keyup="search" @blur="clear" type="text" placeholder="Quick Navigation (Ctrl+K)"/>
         </div>
     </form>
 </template>
