@@ -67,7 +67,7 @@ const logout = reactive({
                 :class="styleStore.asideBrandStyle"
                 class="flex flex-row h-14 items-center justify-between dark:bg-slate-900"
             >
-                <div class="flex text-center lg:text-left lg:pl-6 xl:text-center xl:pl-6 text-lg">
+                <div class="flex text-center lg:text-left pl-6 xl:text-center xl:pl-6 text-lg">
                     <BaseIcon
                         :path="mdiContactlessPayment"
                         :size="22"
