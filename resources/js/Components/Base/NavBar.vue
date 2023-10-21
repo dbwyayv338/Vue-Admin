@@ -1,7 +1,7 @@
 <script setup>
 import {usePage, router} from '@inertiajs/vue3'
 import {computed, ref} from 'vue'
-import {containerMaxW} from '@/config'
+import {containerMaxW, darkModeKey, styleKey} from '@/config'
 import {useMainStore} from '@/Stores/main.js'
 import {useStyleStore} from '@/Stores/style.js'
 import {useLayoutStore} from '@/Stores/layout.js'
@@ -13,7 +13,7 @@ import {
     mdiMenu,
     mdiClockOutline,
     mdiCloud,
-    mdiCrop,
+    mdiPaletteOutline,
     mdiAccount,
     mdiCogOutline,
     mdiEmail,
@@ -34,7 +34,17 @@ const userName = computed(() => usePage().props.auth.user.name)
 
 const styleStore = useStyleStore()
 
+const enableStyles = computed(() => styleStore.getStyles())
+
+const isDarkMode = ref(false)
+
 const toggleLightDark = () => {
+    isDarkMode.value = !isDarkMode.value
+    if(isDarkMode.value) {
+        styleStore.setStyle('gray', false)
+    } else {
+        styleStore.setStyle(localStorage[styleKey], false)
+    }
     styleStore.setDarkMode()
 }
 
@@ -42,8 +52,16 @@ const layoutStore = useLayoutStore()
 
 const isMenuNavBarActive = ref(false)
 
+const isStylePopupActive = ref(false)
+
 const menuNavBarToggle = () => {
     isMenuNavBarActive.value = !isMenuNavBarActive.value
+}
+
+const selectStyle = (style) => {
+    isStylePopupActive.value = false
+    localStorage[styleKey] = style
+    styleStore.setStyle(style)
 }
 
 const logout = () => {
@@ -53,7 +71,7 @@ const logout = () => {
 
 <template>
     <nav
-        class="top-0 left-0 right-0 fixed bg-gray-50 h-14 z-30 w-screen transition-position xl:pl-60 lg:w-auto dark:bg-slate-800"
+        class="top-0 left-0 right-0 fixed bg-gray-100 h-14 z-30 w-screen transition-position xl:pl-60 lg:w-auto dark:bg-slate-800"
     >
         <div
             class="flex lg:items-stretch"
@@ -82,7 +100,7 @@ const logout = () => {
                 </NavBarItem>
             </div>
             <div
-                class="absolute w-screen top-14 left-0 bg-gray-50 shadow
+                class="absolute w-screen top-14 left-0 bg-gray-100 shadow
           lg:w-auto lg:items-stretch lg:flex lg:grow lg:static lg:border-b-0 lg:overflow-visible lg:shadow-none dark:bg-slate-800"
                 :class="[isMenuNavBarActive ? 'block' : 'hidden']"
             >
@@ -121,6 +139,16 @@ const logout = () => {
                     </NavBarItem>
                     <NavBarItem
                         is-desktop-icon-only
+                        @click.prevent="isStylePopupActive = true"
+                    >
+                        <NavBarItemLabel
+                            :icon="mdiPaletteOutline"
+                            label="Switch Style"
+                            is-desktop-icon-only
+                        />
+                    </NavBarItem>
+                    <NavBarItem
+                        is-desktop-icon-only
                         @click="logout"
                     >
                         <NavBarItemLabel
@@ -132,5 +160,19 @@ const logout = () => {
                 </div>
             </div>
         </div>
+        <van-popup v-model:show="isStylePopupActive" position="right">
+            <div class="w-[140px] h-screen p-3 text-center">
+                <div class="w-full text-center text-bold py-2">Select Style</div>
+                <div class="m-auto w-[80%]">
+                    <div
+                        v-for="(style, index) in enableStyles"
+                        :class="'my-5 py-8 text-white cursor-pointer border-double border-4 border-white bg-'+style+'-900'"
+                        @click="selectStyle(style)"
+                    >
+                        {{ style }}
+                    </div>
+                </div>
+            </div>
+        </van-popup>
     </nav>
 </template>

@@ -31,7 +31,7 @@ const form = useForm({
         @click="language.isModalActive = true"
         target="_blank"
         :icon="mdiSignLanguage"
-        label="Switch Language"
+        label="Language"
         color="contrast"
         rounded-full
         small

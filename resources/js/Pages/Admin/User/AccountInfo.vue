@@ -22,6 +22,7 @@ import NotificationBar from "@/Components/Base/NotificationBar.vue"
 import LayoutAuthenticated from "@/Layouts/LayoutAuthenticated.vue"
 import SectionTitleLineWithButton from "@/Components/Base/SectionTitleLineWithButton.vue"
 import Uploader from '@/Components/Admin/Uploader.vue'
+import Dropdown from '@/Components/Base/Dropdown.vue'
 
 const props = defineProps({
     user: {

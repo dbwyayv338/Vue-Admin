@@ -7,5 +7,6 @@ export default {
     "Menus": "Menus",
     "Categories": "Categories",
     "Permissions": "Permissions",
+    "Site Setting": "Site Setting",
     "Template": "Template",
 };

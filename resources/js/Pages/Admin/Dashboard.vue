@@ -65,7 +65,7 @@ onMounted(() => {
                 :title="$t('overview')"
                 main
             >
-                <SwitchLanguage/>
+                <SwitchLanguage />
             </SectionTitleLineWithButton>
 
             <div class="grid grid-cols-1 gap-6 lg:grid-cols-3 mb-6">

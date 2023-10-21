@@ -20,12 +20,15 @@ export const useStyleStore = defineStore('style', {
     darkMode: false,
   }),
   actions: {
-    setStyle (payload) {
+    getStyles () {
+      return styles.enable_styles;
+    },
+    setStyle (payload, cache = true) {
       if (!styles[payload]) {
         return
       }
 
-      if (typeof localStorage !== 'undefined') {
+      if (cache && typeof localStorage !== 'undefined') {
         localStorage.setItem(styleKey, payload)
       }
 
